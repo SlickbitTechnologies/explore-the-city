@@ -15,13 +15,14 @@ function App() {
         body: JSON.stringify({city: cityName, hotel: hotelName})
       })
       const result = await response.json(); 
-      setData(result.result)
+      setData(result?.result?.sightseeing_locations)
       if(result){
         setCityName('')
         setHotelName('')
       }
     }
   }
+  console.log(data, 'dslkfjs')
 
   return (
     <div className="App" style={{width: '100%', }}>
@@ -34,29 +35,38 @@ function App() {
                 placeholder='Please enter the city name' 
                 value={cityName} 
                 onChange={(e) => setCityName(e.target.value)}
-                style={{height: 40, width: 250, border: '1px solid #000', paddingLeft: '10px', borderRadius: '5px'}}
+                style={{height: 40, width: 250, border: '1px solid #FE3101', paddingLeft: '10px', borderRadius: '5px'}}
               />
               <input 
                 type="text" 
                 placeholder='Please enter the hotel name' 
                 value={hotelName} 
                 onChange={(e) => setHotelName(e.target.value)}
-                style={{height: 40, width: 250, border: '1px solid #000', paddingLeft: '10px', borderRadius: '5px', marginLeft: '20px'}}
+                style={{height: 40, width: 250, border: '1px solid #FE3101', paddingLeft: '10px', borderRadius: '5px', marginLeft: '20px'}}
               />
 
-              <div onClick={handleSubmit} style={{height: 40, backgroundColor:'#000', cursor: 'pointer', display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '10px', width: 150, alignSelf:'center', marginLeft: '20px'}}>
-                <h3 style={{color:'#FFF'}}>Submit</h3>
+              <div onClick={handleSubmit} style={{height: 40, backgroundColor:'#FEF4F1', cursor: 'pointer', display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '10px', width: 150, alignSelf:'center', marginLeft: '20px', border: '1px solid #FE3101'}}>
+                <h3 style={{color:'#000', fontWeight: 500}}>Submit</h3>
               </div>
             </div>
-            {data ? 
-              <p style={{textAlign:'left', padding: '20px', whiteSpace: 'pre-wrap'}}>{data}</p>
+            {data?.length > 0 ? 
+            <div style={{width: '100%', height: '100%', display:'flex', flexDirection:'row', flexWrap: 'wrap', marginTop: '20px', marginBottom: '20px', justifyContent:'space-around', marginLeft: '10px'}}>
+              {data?.map((item, index) => {
+                return(
+                  <div key={index} style={{height: 150, width: 300, border: '1px solid #fff', backgroundColor:'#FEF4F1', margin: '5px', borderRadius: '10px', padding: '10px'}}>
+                    <div style={{display:'flex', flexDirection:'row', justifyContent:'space-between'}}>
+                    <h4 style={{}}>{item.place_name}</h4>
+                    <h4 style={{}}>{item.distance_km}kms</h4>
+                    </div>
+                    <h5 style={{fontWeight: 400}}>{item.description}</h5>
+                  </div>
+                )
+              })}
+            </div>
             :
-              <p style={{textAlign:'center', paddingTop: '150px'}}>No data to display, Please input the city and hotel names above.! </p>
+              <h4 style={{textAlign:'center', paddingTop: '150px'}}>No data to display, Please input the city and hotel names above.! </h4>
             }
         </div>
-        {/* <div onClick={handleSubmit} style={{height: 40, backgroundColor:'#000', cursor: 'pointer', display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '10px', borderRadius: '10px', width: 150, alignSelf:'center', marginBottom: '20px'}}>
-          <h2 style={{color:'#FFF'}}>Submit</h2>
-        </div> */}
       </div>
       </div>
       
