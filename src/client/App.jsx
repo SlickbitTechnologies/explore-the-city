@@ -16,10 +16,10 @@ function App() {
       })
       const result = await response.json(); 
       setData(result?.result?.sightseeing_locations)
-      if(result){
-        setCityName('')
-        setHotelName('')
-      }
+      // if(result){
+      //   setCityName('')
+      //   setHotelName('')
+      // }
     }
   }
   console.log(data, 'dslkfjs')
@@ -50,13 +50,13 @@ function App() {
               </div>
             </div>
             {data?.length > 0 ? 
-            <div style={{width: '100%', height: '100%', display:'flex', flexDirection:'row', flexWrap: 'wrap', marginTop: '20px', marginBottom: '20px', justifyContent:'space-around', marginLeft: '10px'}}>
+            <div style={{width: '99%', height: '100%', display:'flex', flexDirection:'row', flexWrap: 'wrap', marginTop: '20px', marginBottom: '20px', justifyContent:'space-around', marginLeft: '10px'}}>
               {data?.map((item, index) => {
                 return(
                   <div key={index} style={{height: 150, width: 300, border: '1px solid #fff', backgroundColor:'#FEF4F1', margin: '5px', borderRadius: '10px', padding: '10px'}}>
                     <div style={{display:'flex', flexDirection:'row', justifyContent:'space-between'}}>
                     <h4 style={{}}>{item.place_name}</h4>
-                    <h4 style={{}}>{item.distance_km}kms</h4>
+                    <h4 style={{}}>{item.distance}</h4>
                     </div>
                     <h5 style={{fontWeight: 400}}>{item.description}</h5>
                   </div>

@@ -4,11 +4,17 @@ export const fetchLocationData = async(req, res) => {
     try{
         const {city, hotel} = req.body;
         
+        const sampleData = [
+          {place_name: 'Charminar',
+          description: 'The Charminar, constructed in 1591, is a monument and mosque located in Hyderabad, Telangana, India. The landmark has become a global icon of Hyderabad, listed among the most recognized structures of India.',
+          distance: 3.5
+          }
+        ]
         let prompt = `You are city explorer. 
         You are asked to provide the top 8 nearby sight-seeing locations based 
         on the city name ${city} and the hotel name ${hotel}.
-        and generate the place name, discription and distance in kilometres and 
-        Generate the data in json format,
+        and generate the place name, discription and distance. 
+        Generate the data in json format same as this example ${sampleData}.
         Dont mention as an AI model in heading,
         Note: dont provide any extra information other than the requested information.`;
 
